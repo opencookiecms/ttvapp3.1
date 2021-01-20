@@ -4,13 +4,15 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from ttvdash.views import(
-    index
+from ttvdash.viewcontroller import(
+    main
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index, name='index'),
+    path('',include('django.contrib.auth.urls')),
+    path('', main.index, name='index'),
+    path('login',main.login_view, name='login')
 ]
 
 if settings.DEBUG:
